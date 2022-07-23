@@ -1,0 +1,5 @@
+Start on the block marked with an X.
+The farm can be any size.
+Although not necessary, I reccomend adding a back wall behind the fences as shown in the images (it does not have to be made of glass).
+Ensure that you have reinforced your hoppers and chests in the collection system to a group that the account using the bot has access to, else the drops will not go into the hoppers.
+Contact me on discord if you have any further questions or if the script isn't working (Warranty void if you touched the script below the No Touchy line!).

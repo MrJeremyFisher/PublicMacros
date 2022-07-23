@@ -1,0 +1,5 @@
+This farm is infinitely tileable using the given schematic.
+farmLength is the distance between the first glass pane and the last.
+The bot will automatically search it's inventory for shears when the pair it is currently using breaks, ensure you have sufficient shears for the time you plan to run the script.
+The bot will continue to harvest until: 1) Its y level changes (Currently the only way to stop the script "properly") or 2) It encounters an error.
+Contact me on discord if you have any further questions or if the script isn't working (Warranty void if you touched the script below the No Touchy line!)

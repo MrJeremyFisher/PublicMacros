@@ -1,0 +1,5 @@
+Only harvest the farm using an unenchanted diamond axe.
+Ensure that the glass panes seen in the image are placed 9 blocks above the dirt on which saplings are planted.
+Ensure that when you start harvesting, the but has adequate saplings for the whole farm in it's inventory.
+The farm uses the same ice-slab-sign water based collection system as the crop farm.
+Contact me on discord if you have any further questions or if the script isn't working (Warranty void if you touched the script below the No Touchy line!)
