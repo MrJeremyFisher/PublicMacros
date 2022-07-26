@@ -1,9 +1,9 @@
 // Change these, start in the NE corner facing E
 // Made by MrJeremyFisher
-farmLength = 34;
-farmWidth = 34;
-crop = "Beetroot";
-cropSeeds = "Beetroot Seeds";
+farmLength = 107;
+farmWidth = 107;
+crop = "Wheat";
+cropSeeds = "Wheat Seeds";
 
 // No touchy
 
