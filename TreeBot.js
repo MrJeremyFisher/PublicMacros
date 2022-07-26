@@ -33,7 +33,7 @@ function chopTree() {
     currentX = player.getX();
 
     // Check if at end of row
-    if (currentZ < (startZ - farmLength)) {
+    if (currentZ <= (startZ - farmLength)) {
         scoot();
     }
 
@@ -121,7 +121,7 @@ function moveToNextTree() {
     currentX = player.getX();
 
     // Check if at end of row
-    if (currentZ < (startZ - farmLength)) {
+    if (currentZ <= (startZ - farmLength)) {
         scoot();
     }
 
@@ -149,7 +149,7 @@ function scoot() {
     currentX = player.getX();
 
     // Check if at end of farm
-    if (currentX + 2 < (startX - farmWidth)) {
+    if (currentX + 2 <= (startX - farmWidth)) {
         Chat.log("§a Stopped Farming!");
         World.playSound("block.note_block.pling", 1, 2);
         return (0);

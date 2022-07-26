@@ -58,7 +58,6 @@ function breakVine() {
             if (compound.get("Damage").asNumberHelper().asInt() >= 238 - 1) {
                 for (i = 0; i < 35; i++) {
                     if (inv.getSlot(i).getName().getString() == "Shears") {
-                        Chat.log("debug6");
                         inv.swap(i, inv.getMap().get("hotbar")[0])
                         inv.setSelectedHotbarSlotIndex(0);
                     }
