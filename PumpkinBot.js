@@ -31,19 +31,36 @@ function lookForAxe() { // Searches the players inv for a tool
 while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
     lookForAxe();
     KeyBind.keyBind('key.sneak', true);
+    KeyBind.keyBind('key.forward', true);
+    KeyBind.keyBind('key.attack', true);
     // Break row going NORTH
     while (player.getZ() > startZ - farmLength - 1 && player.getY() == startY) {
         player.lookAt(-180, 40);
         Client.waitTick(1);
-        KeyBind.keyBind('key.forward', true);
-        KeyBind.keyBind('key.attack', true);
     }
 
     KeyBind.keyBind('key.forward', false);
     KeyBind.keyBind('key.attack', false);
+    KeyBind.keyBind('key.sneak', false);
 
+    // Put pumpkins in chest
+    Client.waitTick(5);
+    player.lookAt(-180, 40);
+    player.interact();
+    Client.waitTick(5);
+    let inv2 = Player.openInventory();
+    for (i = 27; i < 62; i++) {
+        if (inv2.getSlot(i).getName().getString() == "Pumpkin") {
+            inv2.quick(i);
+            Client.waitTick(1);
+        }
+    }
+    Client.waitTick(5);
+    inv2.close();
+    Client.waitTick(5);
 
     // Shift over one row going WEST
+    KeyBind.keyBind('key.sneak', true);
     startX = player.getX();
     while (player.getX() > startX - 3 && player.getY() == startY) {
         player.lookAt(90, 0);
@@ -57,11 +74,11 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
     player.getRaw().m_6034_(Math.floor(player.getX()) + 0.5, player.getY(), Math.floor(player.getZ()) + 0.5);
 
     // Break row going SOUTH
+    KeyBind.keyBind('key.forward', true);
+    KeyBind.keyBind('key.attack', true);
     while (player.getZ() < startZ && player.getY() == startY) {
         player.lookAt(0, 40);
         Client.waitTick(1);
-        KeyBind.keyBind('key.forward', true);
-        KeyBind.keyBind('key.attack', true);
     }
 
     KeyBind.keyBind('key.forward', false);
