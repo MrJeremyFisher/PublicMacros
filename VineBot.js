@@ -1,5 +1,5 @@
 // Made by MrJeremyFisher
-const farmLength = 3;
+const farmLength = 80;
 
 // No touchy
 const player = Player.getPlayer();
@@ -25,6 +25,7 @@ function breakVine() {
         KeyBind.keyBind('key.attack', true);
         KeyBind.keyBind('key.right', true);
         KeyBind.keyBind('key.forward', true);
+        Client.waitTick(1);
     }
 
     KeyBind.keyBind('key.attack', false);
@@ -39,6 +40,7 @@ function breakVine() {
 
     startX = player.getX();
     while (player.getX() < startX + (farmLength - 1) && startY == player.getY()) {
+        Client.waitTick(1);
         KeyBind.keyBind('key.attack', true);
         KeyBind.keyBind('key.right', true);
         KeyBind.keyBind('key.forward', true);
@@ -58,7 +60,8 @@ function breakVine() {
             if (compound.get("Damage").asNumberHelper().asInt() >= 238 - 1) {
                 for (i = 0; i < 35; i++) {
                     if (inv.getSlot(i).getName().getString() == "Shears") {
-                        inv.swap(i, inv.getMap().get("hotbar")[0])
+                        inv.swap(i, inv.getMap().get("hotbar")[0]);
+                        Client.waitTick(1);
                         inv.setSelectedHotbarSlotIndex(0);
                     }
                 }
@@ -67,7 +70,8 @@ function breakVine() {
         } catch (err) {
             for (i = 0; i < 35; i++) {
                 if (inv.getSlot(i).getName().getString() == "Shears") {
-                    inv.swap(i, inv.getMap().get("hotbar")[0])
+                    inv.swap(i, inv.getMap().get("hotbar")[0]);
+                    Client.waitTick(1);
                     inv.setSelectedHotbarSlotIndex(0);
                 }
             }
