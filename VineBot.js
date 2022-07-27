@@ -10,42 +10,7 @@ const startY = player.getY();
 Chat.log("§a Started Farming!");
 World.playSound("block.note_block.pling", 1, 2);
 
-breakVine();
-
-function breakVine() {
-    startX = player.getX();
-    KeyBind.keyBind('key.sneak', true);
-    player.lookAt(0, 15);
-    KeyBind.keyBind('key.forward', true);
-    Client.waitTick(12);
-    KeyBind.keyBind('key.forward', false);
-
-    while (player.getX() > startX - (farmLength - 1) && startY == player.getY()) {
-        player.lookAt(0, 15);
-        KeyBind.keyBind('key.attack', true);
-        KeyBind.keyBind('key.right', true);
-        KeyBind.keyBind('key.forward', true);
-        Client.waitTick(1);
-    }
-
-    KeyBind.keyBind('key.attack', false);
-    KeyBind.keyBind('key.right', false);
-    KeyBind.keyBind('key.forward', false);
-
-    player.lookAt(180, 15);
-
-    KeyBind.keyBind('key.forward', true);
-    Client.waitTick(12);
-    KeyBind.keyBind('key.forward', false);
-
-    startX = player.getX();
-    while (player.getX() < startX + (farmLength - 1) && startY == player.getY()) {
-        Client.waitTick(1);
-        KeyBind.keyBind('key.attack', true);
-        KeyBind.keyBind('key.right', true);
-        KeyBind.keyBind('key.forward', true);
-        player.lookAt(180, 15);
-    }
+function check() {
     if (startY != player.getY()) {
         KeyBind.keyBind('key.attack', false);
         KeyBind.keyBind('key.right', false);
@@ -76,14 +41,49 @@ function breakVine() {
                 }
             }
         }
-        breakVine();
     }
 }
 
+while (startY == player.getY()) {
+    check();
+    startX = player.getX();
+    KeyBind.keyBind('key.sneak', true);
+    player.lookAt(0, 15);
+    KeyBind.keyBind('key.forward', true);
+    Client.waitTick(12);
+    KeyBind.keyBind('key.forward', false);
 
+    while (player.getX() > startX - (farmLength - 1) && startY == player.getY()) {
+        player.lookAt(0, 15);
+        KeyBind.keyBind('key.attack', true);
+        KeyBind.keyBind('key.right', true);
+        KeyBind.keyBind('key.forward', true);
+        Client.waitTick(1);
+    }
 
+    KeyBind.keyBind('key.attack', false);
+    KeyBind.keyBind('key.right', false);
+    KeyBind.keyBind('key.forward', false);
 
+    player.lookAt(180, 15);
+
+    KeyBind.keyBind('key.forward', true);
+    Client.waitTick(12);
+    KeyBind.keyBind('key.forward', false);
+
+    check();
+    startX = player.getX();
+    while (player.getX() < startX + (farmLength - 1) && startY == player.getY()) {
+        Client.waitTick(1);
+        KeyBind.keyBind('key.attack', true);
+        KeyBind.keyBind('key.right', true);
+        KeyBind.keyBind('key.forward', true);
+        player.lookAt(180, 15);
+    }
+}
 
 function endScript() {
+    Chat.log("§a Stopped Farming!");
+    World.playSound("block.note_block.pling", 1, 2);
     return (0);
 }
