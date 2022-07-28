@@ -11,34 +11,27 @@ Chat.log("§a Started Farming!");
 World.playSound("block.note_block.pling", 1, 2);
 
 function check() {
-    if (startY != player.getY()) {
-        KeyBind.keyBind('key.attack', false);
-        KeyBind.keyBind('key.right', false);
-        KeyBind.keyBind('key.sneak', false);
-        KeyBind.keyBind('key.forward', false);
-        World.playSound("block.note_block.pling", 1.5, 2);
-        endScript();
-    } else {
-        try {
-            nbt = player.getMainHand().getNBT();
-            var compound = nbt.asCompoundHelper();
-            if (compound.get("Damage").asNumberHelper().asInt() >= 238 - 1) {
-                for (i = 0; i < 35; i++) {
-                    if (inv.getSlot(i).getName().getString() == "Shears") {
-                        inv.swap(i, inv.getMap().get("hotbar")[0]);
-                        Client.waitTick(1);
-                        inv.setSelectedHotbarSlotIndex(inv.getMap().get("hotbar")[0]);
-                    }
-                }
-
-            }
-        } catch (err) {
-            for (i = 0; i < 35; i++) {
-                if (inv.getSlot(i).getName().getString() == "Shears") {
+    try {
+        nbt = player.getMainHand().getNBT();
+        var compound = nbt.asCompoundHelper();
+        if (compound.get("Damage").asNumberHelper().asInt() >= 238 - 1) {
+            for (i = 9; i < 44; i++) {
+                if (inv.getSlot(i).getName().getString() == "Shears" && compound.get("Damage").asNumberHelper().asInt() >= 237) {
                     inv.swap(i, inv.getMap().get("hotbar")[0]);
                     Client.waitTick(1);
                     inv.setSelectedHotbarSlotIndex(inv.getMap().get("hotbar")[0]);
+                    break;
                 }
+            }
+
+        }
+    } catch (err) {
+        for (i = 9; i < 44; i++) {
+            if (inv.getSlot(i).getName().getString() == "Shears") {
+                inv.swap(i, inv.getMap().get("hotbar")[0]);
+                Client.waitTick(1);
+                inv.setSelectedHotbarSlotIndex(inv.getMap().get("hotbar")[0]);
+                break;
             }
         }
     }
