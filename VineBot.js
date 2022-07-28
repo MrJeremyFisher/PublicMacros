@@ -27,7 +27,7 @@ function check() {
                     if (inv.getSlot(i).getName().getString() == "Shears") {
                         inv.swap(i, inv.getMap().get("hotbar")[0]);
                         Client.waitTick(1);
-                        inv.setSelectedHotbarSlotIndex(0);
+                        inv.setSelectedHotbarSlotIndex(inv.getMap().get("hotbar")[0]);
                     }
                 }
 
@@ -37,12 +37,13 @@ function check() {
                 if (inv.getSlot(i).getName().getString() == "Shears") {
                     inv.swap(i, inv.getMap().get("hotbar")[0]);
                     Client.waitTick(1);
-                    inv.setSelectedHotbarSlotIndex(0);
+                    inv.setSelectedHotbarSlotIndex(inv.getMap().get("hotbar")[0]);
                 }
             }
         }
     }
 }
+
 
 while (startY == player.getY()) {
     check();
@@ -54,6 +55,7 @@ while (startY == player.getY()) {
     KeyBind.keyBind('key.forward', false);
 
     while (player.getX() > startX - (farmLength - 1) && startY == player.getY()) {
+        check();
         player.lookAt(0, 15);
         KeyBind.keyBind('key.attack', true);
         KeyBind.keyBind('key.right', true);
@@ -74,6 +76,7 @@ while (startY == player.getY()) {
     check();
     startX = player.getX();
     while (player.getX() < startX + (farmLength - 1) && startY == player.getY()) {
+        check();
         Client.waitTick(1);
         KeyBind.keyBind('key.attack', true);
         KeyBind.keyBind('key.right', true);
@@ -83,7 +86,5 @@ while (startY == player.getY()) {
 }
 
 function endScript() {
-    Chat.log("§a Stopped Farming!");
-    World.playSound("block.note_block.pling", 1, 2);
     return (0);
 }
