@@ -21,7 +21,7 @@ function check() {
         var compound = nbt.asCompoundHelper();
         if (compound.get("Damage").asNumberHelper().asInt() >= 237) {
             for (i = 9; i < 44; i++) {
-                if (inv.getSlot(i).getName().getString() == "Shears" && compound.get("Damage").asNumberHelper().asInt() < 237) {
+                if (inv.getSlot(i).getName().getString() == "Golden Hoe" && compound.get("Damage").asNumberHelper().asInt() < 237) {
                     inv.swap(i, inv.getMap().get("hotbar")[0]);
                     Client.waitTick(1);
                     inv.setSelectedHotbarSlotIndex(inv.getMap().get("hotbar")[0]);
@@ -31,7 +31,7 @@ function check() {
         }
     } catch (err) {
         for (i = 9; i < 44; i++) {
-            if (inv.getSlot(i).getName().getString() == "Shears") {
+            if (inv.getSlot(i).getName().getString() == "Golden Hoe") {
                 inv.swap(i, inv.getMap().get("hotbar")[0]);
                 Client.waitTick(1);
                 inv.setSelectedHotbarSlotIndex(inv.getMap().get("hotbar")[0]);
