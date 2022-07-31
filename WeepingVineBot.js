@@ -1,4 +1,5 @@
-// Made by MrJeremyFisher
+// Made by MrJeremyFisher 
+// Bot travels on -x -z
 const farmLength = 18;
 const farmWidth = 22;
 
