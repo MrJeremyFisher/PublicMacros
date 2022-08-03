@@ -55,23 +55,24 @@ function getVine() {
 player.getRaw().m_6034_(Math.floor(player.getX()) + 0.5, player.getY(), Math.floor(player.getZ()) + 0.5);
 check();
 
-
+KeyBind.keyBind('key.sneak', true);
 while (player.getX() > trueStartX - farmWidth) {
     startX = player.getX();
     trueStartZ = player.getZ();
     while (player.getZ() > trueStartZ - farmLength - 0.8 && player.getX() > trueStartX - farmWidth) {
+        KeyBind.keyBind('key.sneak', true);
         inv.setSelectedHotbarSlotIndex(0);
         check();
         Client.waitTick(4);
 
         // Break first vine
-        player.lookAt(180, 55);
+        player.lookAt(180, 0);
         Client.waitTick(4);
         player.attack();
         Client.waitTick(2);
 
         // Break second vine
-        player.lookAt(180, 0);
+        player.lookAt(180, -20);
         Client.waitTick(4);
         player.attack();
         Client.waitTick(2);
@@ -118,19 +119,21 @@ while (player.getX() > trueStartX - farmWidth) {
 
     startX = player.getX();
     trueStartZ = player.getZ();
+    KeyBind.keyBind('key.sneak', true);
     while (player.getZ() < trueStartZ + farmLength + 0.8 && player.getX() > trueStartX - farmWidth) {
+        KeyBind.keyBind('key.sneak', true);
         inv.setSelectedHotbarSlotIndex(0);
         check();
         Client.waitTick(4);
 
         // Break first vine
-        player.lookAt(0, 55);
+        player.lookAt(0, 0);
         Client.waitTick(4);
         player.attack();
         Client.waitTick(2);
 
         // Break second vine
-        player.lookAt(0, 0);
+        player.lookAt(0, -20);
         Client.waitTick(4);
         player.attack();
         Client.waitTick(2);
