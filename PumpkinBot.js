@@ -21,7 +21,7 @@ World.playSound("block.note_block.pling", 1, 2);
 
 function lookForAxe() { // Searches the players inv for a tool
     for (i = 0; i < 35; i++) {
-        if (inv.getSlot(i).getName().getString() == toolType && compound.get("Damage").asNumberHelper().asInt() >= toolDamage) {
+        if (inv.getSlot(i).getName().getString() == toolType) {
             inv.swap(i, inv.getMap().get("hotbar")[0])
             inv.setSelectedHotbarSlotIndex(0);
         }
