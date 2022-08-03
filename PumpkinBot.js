@@ -1,6 +1,7 @@
 const farmLength = 81; // Num of pumpkins
 const farmWidth = 80; // Total width (incl. water and stems)
 const toolType = "Iron Axe"; // Name of tool to use (no underscores, capital letters)
+const toolDamage = 200;
 // No touchy ------------------------------------------
 const player = Player.getPlayer();
 const inv = Player.openInventory();
@@ -20,7 +21,7 @@ World.playSound("block.note_block.pling", 1, 2);
 
 function lookForAxe() { // Searches the players inv for a tool
     for (i = 0; i < 35; i++) {
-        if (inv.getSlot(i).getName().getString() == toolType) {
+        if (inv.getSlot(i).getName().getString() == toolType && compound.get("Damage").asNumberHelper().asInt() >= toolDamage) {
             inv.swap(i, inv.getMap().get("hotbar")[0])
             inv.setSelectedHotbarSlotIndex(0);
         }
