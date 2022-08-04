@@ -16,6 +16,32 @@ player.lookAt(-180, 40);
 // Centre the player
 player.getRaw().m_6034_(Math.floor(player.getX()) + 0.5, player.getY(), Math.floor(player.getZ()) + 0.5);
 
+// Grab the mouse
+function grabMouse() {
+    // Client Class
+    let minecraftClass = Reflection.getClass("net.minecraft.client.Minecraft");
+
+    // Mouse Handler Field
+    let mouseHandlerField = Reflection.getDeclaredField(minecraftClass, "f_91067_");
+    mouseHandlerField.setAccessible(true);
+
+    //Use reflection to grab mouse:
+    let clientInstance = Client.getMinecraft();
+
+    // Mouse Handler
+    let mouseHandlerObj = mouseHandlerField.get(clientInstance);
+
+    // Mouse Handelr Class
+    let mouseClass = Reflection.getClass("net.minecraft.client.MouseHandler");
+
+    // Lock Mouse / grab Mouse Boolean Field
+    let lockMouse = Reflection.getDeclaredField(mouseClass, "f_91520_");
+    lockMouse.setAccessible(true);
+
+    // Grab mouse
+    lockMouse.setBoolean(mouseHandlerObj, true);
+}
+
 Chat.log("§a Started Farming!");
 World.playSound("block.note_block.pling", 1, 2);
 
@@ -37,7 +63,8 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
     Client.waitTick(5);
     player.lookAt(-180, 40);
     player.interact();
-    Client.waitTick(5);
+    JsMacros.waitForEvent('OpenScreen');
+
     let inv2 = Player.openInventory();
     for (i = 27; i < 62; i++) {
         if (inv2.getSlot(i).getName().getString() == "Pumpkin") {
@@ -46,8 +73,10 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
         }
     }
     Client.waitTick(5);
-    inv2.close();
+    inv2.closeAndDrop();
     Client.waitTick(5);
+    grabMouse();
+    
 
     // Shift over one row going WEST
     KeyBind.keyBind('key.sneak', true);
@@ -64,8 +93,11 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
     player.getRaw().m_6034_(Math.floor(player.getX()) + 0.5, player.getY(), Math.floor(player.getZ()) + 0.5);
 
     // Break row going SOUTH
-    KeyBind.keyBind('key.forward', true);
     KeyBind.keyBind('key.attack', true);
+    Client.waitTick(20);
+    KeyBind.keyBind('key.attack', false);
+    KeyBind.keyBind('key.attack', true);
+    KeyBind.keyBind('key.forward', true);
     while (player.getZ() < startZ && player.getY() == startY) {
         player.lookAt(0, 40);
         Client.waitTick(1);
