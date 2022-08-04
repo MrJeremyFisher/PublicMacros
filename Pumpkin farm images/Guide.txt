@@ -1,4 +1,4 @@
 Start on the block marked with an X.
 The farm can be any size.
-The farm can be harvested with any tool (including your fist) but the bot will look for whatever tool you specify in the config section.
+The farm should be harvested with a fist.
 Contact me on discord if you have any further questions or if the script isn't working (Warranty void if you touched the script below the No Touchy line!).
