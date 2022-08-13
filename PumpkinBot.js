@@ -49,6 +49,7 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
     KeyBind.keyBind('key.sneak', true);
     KeyBind.keyBind('key.forward', true);
     KeyBind.keyBind('key.attack', true);
+    Chat.log("Going north");
     // Break row going NORTH
     while (player.getZ() > startZ - farmLength - 1 && player.getY() == startY) {
         player.lookAt(-180, 40);
@@ -60,24 +61,28 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
     KeyBind.keyBind('key.sneak', false);
 
     // Put pumpkins in chest
-    Client.waitTick(5);
+    Client.waitTick(20);
     player.lookAt(-180, 40);
     player.interact();
     JsMacros.waitForEvent('OpenScreen');
-
+    Client.waitTick(20);
     let inv2 = Player.openInventory();
-    for (i = 27; i < 62; i++) {
-        if (inv2.getSlot(i).getName().getString() == "Pumpkin") {
-            inv2.quick(i);
-            Client.waitTick(1);
+    try {
+        for (i = 27; i < 62; i++) {
+            if (inv2.getSlot(i).getName().getString() == "Pumpkin") {
+                inv2.quick(i);
+                Client.waitTick(1);
+            }
         }
+    } catch {
+        Chat.log("No chest found, moving on");
     }
     Client.waitTick(5);
     inv2.closeAndDrop();
     Client.waitTick(5);
     grabMouse();
-    
 
+    Chat.log("Going west");
     // Shift over one row going WEST
     KeyBind.keyBind('key.sneak', true);
     startX = player.getX();
@@ -91,7 +96,7 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
 
     // Centre the player
     player.getRaw().m_6034_(Math.floor(player.getX()) + 0.5, player.getY(), Math.floor(player.getZ()) + 0.5);
-
+    Chat.log("Going south");
     // Break row going SOUTH
     KeyBind.keyBind('key.attack', true);
     Client.waitTick(20);
@@ -102,6 +107,7 @@ while (player.getX() > trueStartX - farmWidth && player.getY() == startY) {
         player.lookAt(0, 40);
         Client.waitTick(1);
     }
+    Chat.log("Going west 2");
 
     KeyBind.keyBind('key.forward', false);
     KeyBind.keyBind('key.attack', false);
