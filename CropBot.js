@@ -24,11 +24,11 @@ farm();
 function farm() {
     let farming = true;
     while (farming) {
+        KeyBind.keyBind('key.sneak', false);
+        KeyBind.key("key.mouse.right", true);
+        
         while (currentX < startingX + farmLength) {
-            KeyBind.keyBind('key.sneak', false);
-            KeyBind.key("key.mouse.right", true);
             KeyBind.keyBind('key.forward', true);
-
             currentX = player.getX();
             player.lookAt(270, 75);
             Client.waitTick(1); 
@@ -78,10 +78,11 @@ function farm() {
 
         player.getRaw().m_6034_(Math.floor(player.getX()) + 0.5, player.getY(), Math.floor(player.getZ()) + 0.5);
 
+        KeyBind.keyBind('key.sneak', false);
+        KeyBind.key("key.mouse.right", true);
+        KeyBind.keyBind('key.forward', true);
+
         while (currentX > startingX - farmLength) {
-            KeyBind.keyBind('key.sneak', false);
-            KeyBind.key("key.mouse.right", true);
-            KeyBind.keyBind('key.forward', true);
 
             currentX = player.getX();
             player.lookAt(90, 75);
